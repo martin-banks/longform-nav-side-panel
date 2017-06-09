@@ -1,1 +1,1 @@
-# longform-nav-side-panel
+# small-image-grid
