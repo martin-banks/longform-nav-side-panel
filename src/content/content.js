@@ -1,3 +1,4 @@
+import Image from './images/16_9.jpg'
 
 const CONTENT = {
 	header: {
@@ -9,10 +10,18 @@ const CONTENT = {
 	chapters: [
 		{
 			type: 'motherhood',
+			closed: {
+				title: 'This is the closed chapter title',
+				intro: 'Closed chapter intro',
+			},
 			parts: [
 				{
 					type: 'photoessay',
 					value: {
+						image: {
+							src: Image,
+							alt: 'alt text here',
+						},
 						id: '#',
 						title: 'Title of the article',
 						intro: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima assumenda impedit.',
@@ -21,6 +30,10 @@ const CONTENT = {
 				{
 					type: 'comment',
 					value: {
+						image: {
+							src: Image,
+							alt: 'alt text here',
+						},
 						id: '#',
 						title: 'Title of the article',
 						intro: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima assumenda impedit.',
@@ -29,6 +42,10 @@ const CONTENT = {
 				{
 					type: 'gallery',
 					value: {
+						image: {
+							src: Image,
+							alt: 'alt text here',
+						},
 						id: '#',
 						title: 'Title of the article',
 						intro: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima assumenda impedit.',
@@ -39,10 +56,18 @@ const CONTENT = {
 
 		{
 			type: 'princess',
+			closed: {
+				title: 'This is the closed chapter title',
+				intro: 'Closed chapter intro',
+			},
 			parts: [
 				{
 					type: 'photoessay',
 					value: {
+						image: {
+							src: Image,
+							alt: 'alt text here',
+						},
 						id: '#',
 						title: 'Title of the article',
 						intro: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima assumenda impedit.',
@@ -51,6 +76,10 @@ const CONTENT = {
 				{
 					type: 'comment',
 					value: {
+						image: {
+							src: Image,
+							alt: 'alt text here',
+						},
 						id: '#',
 						title: 'Title of the article',
 						intro: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima assumenda impedit.',
@@ -59,6 +88,10 @@ const CONTENT = {
 				{
 					type: 'gallery',
 					value: {
+						image: {
+							src: Image,
+							alt: 'alt text here',
+						},
 						id: '#',
 						title: 'Title of the article',
 						intro: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima assumenda impedit.',
@@ -69,10 +102,18 @@ const CONTENT = {
 
 		{
 			type: 'family',
+			closed: {
+				title: 'This is the closed chapter title',
+				intro: 'Closed chapter intro',
+			},
 			parts: [
 				{
 					type: 'photoessay',
 					value: {
+						image: {
+							src: Image,
+							alt: 'alt text here',
+						},
 						id: '#',
 						title: 'Title of the article',
 						intro: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima assumenda impedit.',
@@ -81,6 +122,10 @@ const CONTENT = {
 				{
 					type: 'comment',
 					value: {
+						image: {
+							src: Image,
+							alt: 'alt text here',
+						},
 						id: '#',
 						title: 'Title of the article',
 						intro: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima assumenda impedit.',
@@ -89,6 +134,10 @@ const CONTENT = {
 				{
 					type: 'gallery',
 					value: {
+						image: {
+							src: Image,
+							alt: 'alt text here',
+						},
 						id: '#',
 						title: 'Title of the article',
 						intro: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima assumenda impedit.',
@@ -99,10 +148,18 @@ const CONTENT = {
 
 		{
 			type: 'fashion',
+			closed: {
+				title: 'This is the closed chapter title',
+				intro: 'Closed chapter intro',
+			},
 			parts: [
 				{
 					type: 'photoessay',
 					value: {
+						image: {
+							src: Image,
+							alt: 'alt text here',
+						},
 						id: '#',
 						title: 'Title of the article',
 						intro: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima assumenda impedit.',
@@ -111,6 +168,10 @@ const CONTENT = {
 				{
 					type: 'comment',
 					value: {
+						image: {
+							src: Image,
+							alt: 'alt text here',
+						},
 						id: '#',
 						title: 'Title of the article',
 						intro: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima assumenda impedit.',
@@ -119,6 +180,10 @@ const CONTENT = {
 				{
 					type: 'gallery',
 					value: {
+						image: {
+							src: Image,
+							alt: 'alt text here',
+						},
 						id: '#',
 						title: 'Title of the article',
 						intro: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima assumenda impedit.',
