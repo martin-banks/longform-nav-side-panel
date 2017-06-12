@@ -25,9 +25,9 @@
 	top: 0
 	width: calc(100% - 80px)
 	// min-width: 280px
-	// max-width: 500px
+	max-width: 500px
 	height: 100%
-	z-index: -1
+	z-index: 999
 
 .navContainer[data-theme="dark"]
 		background: rgba($color-grey-8, 0.9)
@@ -37,7 +37,7 @@
 	transform: translateX(0)
 
 .navContainer[data-state="closed"]
-	// transform: translateX(100%)
+	transform: translateX(100%)
 
 
 .nav_content
@@ -47,24 +47,21 @@
 	height: 100%
 	overflow: scroll
 	padding: $space-reg
-	z-index: -1
 
 .nav_icon
 	+reset
-	+corner-reg
-	position: fixed
+	position: absolute
 	display: flex
 	justify-content: center
 	top: 50%
 	left: 0
-	// transform: translateX(calc(100% -76px)) translateY(-50%)
+	transform: translateX(-100%) translateY(-50%)
 	padding: $space-reg
-	background: rgba($color-grey-8, 0.8)
-	width: 70px
+	background: rgba($color-grey-1, 0.8)
+	width: 80px
 	height: 110px
 	cursor: pointer
 	white-space: pre-wrap
-	z-index: 200
 	img
 		transition: transform 300ms
 		position: absolute
@@ -82,28 +79,27 @@
 
 .nav_icon:before
 	+guardianCond-bold
-	font-size: 14px
-	letter-spacing: 1px
 	position: absolute !important
 	margin-left: $space-xxs
 	display: block
 	text-align: left
 	text-transform: uppercase
+	letter-spacing: 2px
 
 
 [data-state="open"]
-.nav_icon
-	img
-		transform: translateX(-50%) rotate(0deg)
-.nav_icon:before
-	content: 'Back to article'
+	.nav_icon
+		img
+			transform: translateX(-50%) rotate(0deg)
+	.nav_icon:before
+		content: 'Back to'
 
 [data-state="closed"]
-.nav_icon
-	img
-		transform: translateX(-50%) rotate(180deg)
-.nav_icon:before
-	content: 'Chapter menu'
+	.nav_icon
+		img
+			transform: translateX(-50%) rotate(180deg)
+	.nav_icon:before
+		content: 'Chapter menu'
 
 
 
@@ -114,26 +110,22 @@
 	padding: $space-lg
 	margin: $space-reg
 	cursor: pointer
-	width: 30%
+
 	// display: inline-block
-	transform: translateX(calc(200% + 40px)) !important
-	vertical-align: top
+	// transform: translateX(calc(200% + 40px)) !important
+	// vertical-align: top
 
 
 .chapter_container[data-active="true"]
+	background: $color-white
+	+box-shadow-xs
 		
 
 .chapter_container[data-active="false"]
 	background: none
 
 .chapter_container[data-current="true"]
-	background: $color-white
-	+box-shadow-xs
-	position: absolute
-	top: 0
-	left: 0
-	width: 60%
-	transform: translateX(0) !important
+
 
 
 

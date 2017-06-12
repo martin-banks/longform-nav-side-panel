@@ -16,8 +16,7 @@ const navSettings = {
 
 
 // const APP = document.querySelector(`#${CONFIG.projectName}`)
-// const APP = document.querySelector('.w_header-fixed')
-const APP = document.querySelector('.w_nav-toggle')
+const APP = document.querySelector('.w_header-fixed')
 
 const TEMPLATES = {
 	header: {
@@ -103,11 +102,11 @@ function NavContainer(content) {
 			data-state="closed"
 			data-theme="${CONFIG.theme}"
 		>
+			<div class="${Styles.nav_icon}" data-type="navbutton">
+				<img src="${CONFIG.theme === 'light' ? ICONS.angle_right_dark : ICONS.angle_right_light}" alt="" />
+			</div>
 			<div class="${Styles.nav_content}">${chapters.map(chapter => chapterTemplate(chapter)).join('')}</div>
-	</section>
-	<div class="${Styles.nav_icon}" data-type="navbutton">
-		<img src="${CONFIG.theme === 'light' ? ICONS.angle_right_dark : ICONS.angle_right_light}" alt="" />
-	</div>`
+	</section>`
 }
 
 
@@ -116,23 +115,20 @@ APP.innerHTML = NavContainer(CONTENT)
 
 
 
-const NAV = document.querySelector('[data-type="navcontainer"]')
-const BUTTON = document.querySelector('[data-type="navbutton"]')
-
+const NAV = APP.querySelector('[data-type="navcontainer"]')
+const BUTTON = NAV.querySelector('[data-type="navbutton"]')
 const article = document.querySelector('#content-wrapper')
 article.style.transition = 'transform 500ms'
 article.style.background = '#fff'
 article.style.transformOrigin = 'left'
-article.style.position = 'relative'
-article.style.zIndex = '99'
 
 function toggleMenu(e) {
-	// const nav = document.querySelector('[data-type="navcontainer"]')
-	const state = NAV.getAttribute('data-state')
+	const nav = this.parentNode
+	const state = nav.getAttribute('data-state')
 	document.body.style.background = state !== 'open' ? '#333' : '#fff'
 	document.body.style.overflow = state !== 'open' ? 'hidden' : 'scroll'
-	NAV.setAttribute('data-state', state === 'open' ? 'closed' : 'open')
-	article.style.transform = state !== 'open' ? 'translateX(calc(-100% + 80px)' : ''
+	nav.setAttribute('data-state', state === 'open' ? 'closed' : 'open')
+	article.style.transform = state !== 'open' ? 'translateX(-600px) scale(0.95)' : ''
 	// article.style.filter = state !== 'open' ? 'blur(5px)' : ''
 	// article.style.opacity = state !== 'open' ? '0.8' : '1'
 }
