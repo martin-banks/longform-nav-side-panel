@@ -15,7 +15,9 @@ const navSettings = {
 }
 
 
-const APP = document.querySelector(`#${CONFIG.projectName}`)
+// const APP = document.querySelector(`#${CONFIG.projectName}`)
+// const APP = document.querySelector('.w_header-fixed')
+const APP = document.querySelector('.w_nav-toggle')
 
 const TEMPLATES = {
 	header: {
@@ -33,6 +35,7 @@ const TEMPLATES = {
 		title: value => `<h3 class="${Styles.title_closed}">${value}</h3>`,
 		intro: value => `<h4 class="${Styles.intro_closed}">${value}</h4>`,
 		kicker: value => `<h6 class="${Styles.kicker_closed}">${value}</h6>`,
+		releaseDate: value => `<p class="${Styles.releaseDate_closed}">${value}</p>`,
 	},
 }
 
@@ -56,24 +59,38 @@ function partTemplate(part) {
 	</a>`
 }
 
-function closedChapter(closed) {
-	const KEYS = Object.keys(closed)
-	const template = value => `<div class="${Styles.closedChapter}">
-		${value}
+function closedChapter(chapter) {
+	const { title, intro, kicker } = chapter
+	// const KEYS = Object.keys(closed)
+	return `<div class="${Styles.closedChapter}">
+		${TEMPLATES.closed.kicker(kicker)}
+		${TEMPLATES.closed.title(title)}
+		${TEMPLATES.closed.intro(intro)}
 	</div>`
 
-	return template(KEYS.map(key => TEMPLATES.closed[key](closed[key])).join(''))
+	// return template(KEYS.map(key => TEMPLATES.closed[key](closed[key])).join(''))
+}
+
+function activeChapter(chapter) {
+	const { title, intro, kicker } = chapter
+	return [
+		TEMPLATES.chapter.kicker(kicker),
+		TEMPLATES.chapter.title(title),
+		TEMPLATES.chapter.intro(intro),
+		chapter.parts.map(part => partTemplate(part)).join(''),
+	].join('')
 }
 
 
 function chapterTemplate(chapter) {
-	const active = chapter.type === navSettings.chapter
+	const current = chapter.type === navSettings.chapter
 	return `<div 
 		class="${Styles.chapter_container}" 
 		data-type="${chapter.type}"
-		data-active="${active}"
+		data-current="${current}"
+		data-active="${chapter.active}"
 	>
-		${active ? chapter.parts.map(part => partTemplate(part)).join('') : closedChapter(chapter.closed)}
+		${current ? activeChapter(chapter) : closedChapter(chapter)}
 	</div>`
 }
 
@@ -83,26 +100,41 @@ function NavContainer(content) {
 	return `<section 
 			class="${Styles.navContainer}"
 			data-type="navcontainer"
-			data-state="open"
+			data-state="closed"
+			data-theme="${CONFIG.theme}"
 		>
-			<div class="${Styles.nav_icon}" data-type="navbutton">
-				<img src="${ICONS.angle_right_dark}" alt="" />
-			</div>
 			<div class="${Styles.nav_content}">${chapters.map(chapter => chapterTemplate(chapter)).join('')}</div>
-	</section>`
+	</section>
+	<div class="${Styles.nav_icon}" data-type="navbutton">
+		<img src="${CONFIG.theme === 'light' ? ICONS.angle_right_dark : ICONS.angle_right_light}" alt="" />
+	</div>`
 }
 
 
 APP.setAttribute('data-mobile', isMobileDevice())
 APP.innerHTML = NavContainer(CONTENT)
 
-const NAV = APP.querySelector('[data-type="navcontainer"]')
-const BUTTON = NAV.querySelector('[data-type="navbutton"]')
+
+
+const NAV = document.querySelector('[data-type="navcontainer"]')
+const BUTTON = document.querySelector('[data-type="navbutton"]')
+
+const article = document.querySelector('#content-wrapper')
+article.style.transition = 'transform 500ms'
+article.style.background = '#fff'
+article.style.transformOrigin = 'left'
+article.style.position = 'relative'
+article.style.zIndex = '99'
 
 function toggleMenu(e) {
-	const nav = this.parentNode
-	const state = nav.getAttribute('data-state')
-	nav.setAttribute('data-state', state === 'open' ? 'closed' : 'open')
+	// const nav = document.querySelector('[data-type="navcontainer"]')
+	const state = NAV.getAttribute('data-state')
+	document.body.style.background = state !== 'open' ? '#333' : '#fff'
+	document.body.style.overflow = state !== 'open' ? 'hidden' : 'scroll'
+	NAV.setAttribute('data-state', state === 'open' ? 'closed' : 'open')
+	article.style.transform = state !== 'open' ? 'translateX(calc(-100% + 80px)' : ''
+	// article.style.filter = state !== 'open' ? 'blur(5px)' : ''
+	// article.style.opacity = state !== 'open' ? '0.8' : '1'
 }
-
 BUTTON.addEventListener('click', toggleMenu)
+

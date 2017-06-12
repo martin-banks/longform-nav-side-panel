@@ -2,7 +2,8 @@
 	"projectName": "app__customnav_side",
 	"section": "network",
 	"path": {
-		"UAT": "localhost:8080",
+		"UAT": "http://10.68.72.154:7836/_experiments/sideLinks",
 		"PROD": "http://media.news.com.au/nnd/t3interactives"
-	}
+	},
+	"theme": "dark"
 }

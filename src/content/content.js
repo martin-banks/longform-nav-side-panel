@@ -9,11 +9,12 @@ const CONTENT = {
 
 	chapters: [
 		{
+			active: true,
 			type: 'motherhood',
-			closed: {
-				title: 'This is the closed chapter title',
-				intro: 'Closed chapter intro',
-			},
+			kicker: 'Part 1',
+			title: 'Motherhood',
+			intro: 'Closed chapter intro',
+			releaseDate: 'This chapter will be released on Wednesday 26 July',
 			parts: [
 				{
 					type: 'photoessay',
@@ -55,11 +56,12 @@ const CONTENT = {
 		}, // end of chapter
 
 		{
+			active: true,
 			type: 'princess',
-			closed: {
-				title: 'This is the closed chapter title',
-				intro: 'Closed chapter intro',
-			},
+			kicker: 'Part 2',
+			title: 'People\'s princess',
+			intro: 'Closed chapter intro',
+			releaseDate: 'This chapter will be released on Wednesday 26 July',
 			parts: [
 				{
 					type: 'photoessay',
@@ -101,11 +103,12 @@ const CONTENT = {
 		}, // end of chapter
 
 		{
+			active: false,
 			type: 'family',
-			closed: {
-				title: 'This is the closed chapter title',
-				intro: 'Closed chapter intro',
-			},
+			kicker: 'Part 3',
+			title: 'Family, friends and confidantes',
+			intro: 'Closed chapter intro',
+			releaseDate: 'This chapter will be released on Wednesday 26 July',
 			parts: [
 				{
 					type: 'photoessay',
@@ -147,11 +150,153 @@ const CONTENT = {
 		}, // end of chapter
 
 		{
+			active: false,
 			type: 'fashion',
-			closed: {
-				title: 'This is the closed chapter title',
-				intro: 'Closed chapter intro',
-			},
+			kicker: 'Part 4',
+			title: 'Style icon',
+			intro: 'Closed chapter intro',
+			releaseDate: 'This chapter will be released on Wednesday 26 July',
+			parts: [
+				{
+					type: 'photoessay',
+					value: {
+						image: {
+							src: Image,
+							alt: 'alt text here',
+						},
+						id: '#',
+						title: 'Title of the article',
+						intro: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima assumenda impedit.',
+					},
+				},
+				{
+					type: 'comment',
+					value: {
+						image: {
+							src: Image,
+							alt: 'alt text here',
+						},
+						id: '#',
+						title: 'Title of the article',
+						intro: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima assumenda impedit.',
+					},
+				},
+				{
+					type: 'gallery',
+					value: {
+						image: {
+							src: Image,
+							alt: 'alt text here',
+						},
+						id: '#',
+						title: 'Title of the article',
+						intro: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima assumenda impedit.',
+					},
+				},
+			],
+		}, // end of chapter
+
+		{
+			active: false,
+			type: 'fashion',
+			kicker: 'Part 5',
+			title: 'Philanthropist',
+			intro: 'Closed chapter intro',
+			releaseDate: 'This chapter will be released on Wednesday 26 July',
+			parts: [
+				{
+					type: 'photoessay',
+					value: {
+						image: {
+							src: Image,
+							alt: 'alt text here',
+						},
+						id: '#',
+						title: 'Title of the article',
+						intro: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima assumenda impedit.',
+					},
+				},
+				{
+					type: 'comment',
+					value: {
+						image: {
+							src: Image,
+							alt: 'alt text here',
+						},
+						id: '#',
+						title: 'Title of the article',
+						intro: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima assumenda impedit.',
+					},
+				},
+				{
+					type: 'gallery',
+					value: {
+						image: {
+							src: Image,
+							alt: 'alt text here',
+						},
+						id: '#',
+						title: 'Title of the article',
+						intro: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima assumenda impedit.',
+					},
+				},
+			],
+		}, // end of chapter
+
+		{
+			active: false,
+			type: 'fashion',
+			kicker: 'Part 6',
+			title: 'The firm',
+			intro: 'Closed chapter intro',
+			releaseDate: 'This chapter will be released on Wednesday 26 July',
+			parts: [
+				{
+					type: 'photoessay',
+					value: {
+						image: {
+							src: Image,
+							alt: 'alt text here',
+						},
+						id: '#',
+						title: 'Title of the article',
+						intro: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima assumenda impedit.',
+					},
+				},
+				{
+					type: 'comment',
+					value: {
+						image: {
+							src: Image,
+							alt: 'alt text here',
+						},
+						id: '#',
+						title: 'Title of the article',
+						intro: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima assumenda impedit.',
+					},
+				},
+				{
+					type: 'gallery',
+					value: {
+						image: {
+							src: Image,
+							alt: 'alt text here',
+						},
+						id: '#',
+						title: 'Title of the article',
+						intro: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima assumenda impedit.',
+					},
+				},
+			],
+		}, // end of chapter
+
+		{
+			active: false,
+			type: 'fashion',
+			kicker: 'Part 7',
+			title: 'Romance',
+			intro: 'Closed chapter intro',
+			releaseDate: 'This chapter will be released on Wednesday 26 July',
 			parts: [
 				{
 					type: 'photoessay',
