@@ -28,7 +28,13 @@ const TEMPLATES = {
 		title: value => `<h3 class="${Styles.title_chapter}">${value}</h3>`,
 		intro: value => `<h4 class="${Styles.intro_chapter}">${value}</h4>`,
 		kicker: value => `<h6 class="${Styles.kicker_chapter}">${value}</h6>`,
-		image: value => `<img class="${Styles.image_chapter}" src="${value.src}" />`,
+		image: value => `<!--<img class="${Styles.image_chapter}" src="${value.src}" />-->`,
+	},
+	part: {
+		title: value => `<h3 class="${Styles.title_part}">${value}</h3>`,
+		intro: value => `<h4 class="${Styles.intro_part}">${value}</h4>`,
+		kicker: value => `<h6 class="${Styles.kicker_part}">${value}</h6>`,
+		image: value => ``,
 	},
 	closed: {
 		title: value => `<h3 class="${Styles.title_closed}">${value}</h3>`,
@@ -48,10 +54,10 @@ function partTemplate(part) {
 		class="${Styles.part_linkWrapper}" 
 		data-type="${part.type}"
 	>
-		${TEMPLATES.chapter.image(image)}
+		${TEMPLATES.part.image(image)}
 		<div class="${Styles.chapter_text_wrapper}">
-			${TEMPLATES.chapter.title(title)}
-			${TEMPLATES.chapter.intro(intro)}
+			${TEMPLATES.part.title(title)}
+			${TEMPLATES.part.intro(intro)}
 			<div class="${Styles.part_linkIcon}"></div>
 		</div>
 
@@ -112,7 +118,6 @@ function NavContainer(content) {
 
 APP.setAttribute('data-mobile', isMobileDevice())
 APP.innerHTML = NavContainer(CONTENT)
-
 
 
 const NAV = APP.querySelector('[data-type="navcontainer"]')
