@@ -14,9 +14,11 @@ const navSettings = {
 	part: 'photoessay',
 }
 
+const defaultState = 'open'
 
-// const APP = document.querySelector(`#${CONFIG.projectName}`)
-const APP = document.querySelector('.w_header-fixed')
+
+const APP = document.querySelector(`#${CONFIG.projectName}`)
+// const APP = document.querySelector('.w_header-fixed')
 
 const TEMPLATES = {
 	header: {
@@ -46,7 +48,7 @@ const TEMPLATES = {
 
 
 function partTemplate(part) {
-	const { id: link, intro, title, image } = part.value
+	const { id: link, intro, title, kicker, image } = part.value
 	const { value, type } = part
 	return type === navSettings.part ? '' : `<a 
 		href="${link}"
@@ -56,21 +58,25 @@ function partTemplate(part) {
 	>
 		${TEMPLATES.part.image(image)}
 		<div class="${Styles.chapter_text_wrapper}">
+			${TEMPLATES.part.kicker(kicker)}
 			${TEMPLATES.part.title(title)}
 			${TEMPLATES.part.intro(intro)}
-			<div class="${Styles.part_linkIcon}"></div>
+			<div class="${Styles.part_linkIcon}">
+				<img class="${Styles.icon_link}" src="${ICONS.angle_right_dark}" alt="" />
+			</div>
 		</div>
 
 	</a>`
 }
 
 function closedChapter(chapter) {
-	const { title, intro, kicker } = chapter
+	const { title, intro, kicker, releaseDate, active } = chapter
 	// const KEYS = Object.keys(closed)
 	return `<div class="${Styles.closedChapter}">
 		${TEMPLATES.closed.kicker(kicker)}
 		${TEMPLATES.closed.title(title)}
 		${TEMPLATES.closed.intro(intro)}
+		${!active ? TEMPLATES.closed.releaseDate(releaseDate) : ''}
 	</div>`
 
 	// return template(KEYS.map(key => TEMPLATES.closed[key](closed[key])).join(''))
@@ -105,7 +111,7 @@ function NavContainer(content) {
 	return `<section 
 			class="${Styles.navContainer}"
 			data-type="navcontainer"
-			data-state="closed"
+			data-state="${defaultState}"
 			data-theme="${CONFIG.theme}"
 		>
 			<div class="${Styles.nav_icon}" data-type="navbutton">
@@ -123,19 +129,22 @@ APP.innerHTML = NavContainer(CONTENT)
 const NAV = APP.querySelector('[data-type="navcontainer"]')
 const BUTTON = NAV.querySelector('[data-type="navbutton"]')
 const article = document.querySelector('#content-wrapper')
-article.style.transition = 'transform 500ms'
-article.style.background = '#fff'
-article.style.transformOrigin = 'left'
+if (article) {
+	article.style.transition = 'transform 500ms'
+	article.style.background = '#fff'
+	article.style.transformOrigin = 'left'
+}
 
 function toggleMenu(e) {
-	const nav = this.parentNode
-	const state = nav.getAttribute('data-state')
-	document.body.style.background = state !== 'open' ? '#333' : '#fff'
+	const state = NAV.getAttribute('data-state')
 	document.body.style.overflow = state !== 'open' ? 'hidden' : 'scroll'
-	nav.setAttribute('data-state', state === 'open' ? 'closed' : 'open')
-	article.style.transform = state !== 'open' ? 'translateX(-600px) scale(0.95)' : ''
-	// article.style.filter = state !== 'open' ? 'blur(5px)' : ''
-	// article.style.opacity = state !== 'open' ? '0.8' : '1'
+	NAV.setAttribute('data-state', state === 'open' ? 'closed' : 'open')
+	if (article) {
+		document.body.style.background = state !== 'open' ? '#333' : '#fff'
+		article.style.transform = state !== 'open' ? 'translateX(-600px) scale(0.95)' : ''
+		// article.style.filter = state !== 'open' ? 'blur(5px)' : ''
+		// article.style.opacity = state !== 'open' ? '0.8' : '1'
+	}
 }
 BUTTON.addEventListener('click', toggleMenu)
 
