@@ -90,7 +90,6 @@
 	letter-spacing: 2px
 
 .nav_icon:hover
-	
 	transform: translateX(-90px) translateY(-52%) scale(1.05)
 
 
@@ -114,6 +113,7 @@
 .chapter_container
 	+reset
 	+guardian-light
+	+corner-reg
 	// +corner-sm
 	padding: $space-lg
 	background: rgba($color-grey-9, 0.8)
@@ -238,6 +238,9 @@
 
 .part_linkIcon
 	+reset
+	transition-timing-function: cubic-bezier(0.68, -1.55, 0.265, 1.55);
+	transition-duration: 200ms
+	transition-delay: 300ms
 	position: absolute
 	box-sizing: content-box
 	right: 0
@@ -245,14 +248,15 @@
 	width: 25px
 	height: 25px
 	transform: translateX(50%) translateY(-50%)
-	margin-top: 0 - ($space-reg / 2)
+	margin-top: 0
 	.icon_link
 		width: 100%
 		height: auto
 
-.part_linkWrapper:last-of-type
+.part_linkWrapper:hover
 	.part_linkIcon
-		margin-top: 0
+		transform: translateX(calc(50% + 8px)) translateY(-50%)
+
 
 .kicker_part,
 .title_part,
