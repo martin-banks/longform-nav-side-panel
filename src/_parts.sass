@@ -6,20 +6,28 @@
 @import ./styleguide/fonts/playfair
 
 
-.part_linkWrapper
+// RESETS //////////////////////
+.part_linkWrapper,
+.part_linkIcon,
+.kicker_part,
+.title_part,
+.intro_part
 	+resetStyles
+
+
+
+.part_linkWrapper
 	+corner-sm
 	text-decoration: none
-	// color: $color-black
 	background: $color-white
 	padding: $space-lg
-	// margin: $space-reg
-	// margin-top: 0
 	margin-bottom: $space-reg
+
+.part_linkWrapper:last-of-type
+	margin-bottom: 0
 
 
 .part_linkIcon
-	+resetStyles
 	transition-timing-function: cubic-bezier(0.68, -1.55, 0.265, 1.55);
 	transition-duration: 200ms
 	transition-delay: 300ms
@@ -41,11 +49,8 @@
 
 
 
-.kicker_part,
-.title_part,
-.intro_part
-	+resetStyles
 
+// KICKER //////////////////////
 .kicker_part
 	+guardianCond-bold
 	+corner-sm
@@ -59,13 +64,18 @@
 	display: inline-flex !important
   justify-content: center !important
   align-items: center !important
-	
 
+
+
+// TITLE ///////////////////////
 .title_part
 	+playfair-light
 	margin-bottom: $space-reg
 	font-size: 32px
 
+
+
+// INTRO ////////////////////////
 .intro_part
 	+guardian-light
 	line-height: 1.2
