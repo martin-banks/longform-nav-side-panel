@@ -14,7 +14,7 @@ const CONTENT = {
 			kicker: 'Part 1',
 			title: 'Motherhood',
 			intro: 'Closed chapter intro',
-			releaseDate: 'Available on Wednesday 26 July',
+			releaseDate: 'Available on Sunday 23 July',
 			parts: [
 				{
 					type: 'photoessay',
@@ -67,7 +67,7 @@ const CONTENT = {
 			kicker: 'Part 2',
 			title: 'People\'s princess',
 			intro: 'Closed chapter intro',
-			releaseDate: 'Available on Wednesday 26 July',
+			releaseDate: 'Available on Monday 24 July',
 			parts: [
 				{
 					type: 'photoessay',
@@ -117,7 +117,7 @@ const CONTENT = {
 			kicker: 'Part 3',
 			title: 'Family, friends and confidantes',
 			intro: 'Closed chapter intro',
-			releaseDate: 'Available on Wednesday 26 July',
+			releaseDate: 'Available on Tuesday 25 July',
 			parts: [
 				{
 					type: 'photoessay',
@@ -217,7 +217,7 @@ const CONTENT = {
 			kicker: 'Part 5',
 			title: 'Philanthropist',
 			intro: 'Closed chapter intro',
-			releaseDate: 'Available on Wednesday 26 July',
+			releaseDate: 'Available on Thursday 27 July',
 			parts: [
 				{
 					type: 'photoessay',
@@ -267,7 +267,7 @@ const CONTENT = {
 			kicker: 'Part 6',
 			title: 'The firm',
 			intro: 'Closed chapter intro',
-			releaseDate: 'Available on Wednesday 26 July',
+			releaseDate: 'Available on Friday 28 July',
 			parts: [
 				{
 					type: 'photoessay',
@@ -317,7 +317,7 @@ const CONTENT = {
 			kicker: 'Part 7',
 			title: 'Romance',
 			intro: 'Closed chapter intro',
-			releaseDate: 'Available on Wednesday 26 July',
+			releaseDate: 'Available on Saturday 29 July',
 			parts: [
 				{
 					type: 'photoessay',
