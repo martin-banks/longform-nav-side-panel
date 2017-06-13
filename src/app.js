@@ -43,6 +43,7 @@ const TEMPLATES = {
 		intro: value => `<h4 class="${Styles.intro_closed}">${value}</h4>`,
 		kicker: value => `<h6 class="${Styles.kicker_closed}">${value}</h6>`,
 		releaseDate: value => `<p class="${Styles.releaseDate_closed}">${value}</p>`,
+		openButton: () => `<button>Open me!!</button>`,
 	},
 }
 
@@ -65,7 +66,6 @@ function partTemplate(part) {
 				<img class="${Styles.icon_link}" src="${ICONS.angle_right_dark}" alt="" />
 			</div>
 		</div>
-
 	</a>`
 }
 
@@ -76,7 +76,7 @@ function closedChapter(chapter) {
 		${TEMPLATES.closed.kicker(kicker)}
 		${TEMPLATES.closed.title(title)}
 		${TEMPLATES.closed.intro(intro)}
-		${!active ? TEMPLATES.closed.releaseDate(releaseDate) : ''}
+		${!active ? TEMPLATES.closed.releaseDate(releaseDate) : TEMPLATES.closed.openButton()}
 	</div>`
 
 	// return template(KEYS.map(key => TEMPLATES.closed[key](closed[key])).join(''))
