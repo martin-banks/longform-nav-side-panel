@@ -1,0 +1,99 @@
+@import ./_reset
+
+@import ./styleguide/styleguide
+@import ./styleguide/fonts/guardian
+@import ./styleguide/fonts/guardianCond
+@import ./styleguide/fonts/playfair
+
+
+.navContainer 
+	+resetStyles
+	transition: transform 500ms
+	position: fixed
+	right: 0
+	top: 0
+	width: calc(100% - 80px)
+	max-width: 500px
+	height: 100%
+	z-index: 999
+
+// .navContainer[data-theme="dark"]
+		// background: rgba($color-grey-8, 0.9)
+
+
+.navContainer[data-state="open"]
+	transform: translateX(0)
+
+.navContainer[data-state="closed"]
+	transform: translateX(100%)
+
+
+.nav_content
+	+resetStyles
+	position: absolute
+	width: 100%
+	height: 100%
+	overflow: scroll
+	padding: $space-reg
+
+.nav_icon
+	+resetStyles
+	+corner-reg
+	transition-timing-function: cubic-bezier(0.68, -1.55, 0.265, 1.55);
+	transition-duration: 200ms
+	position: absolute
+	display: flex
+	justify-content: center
+	top: 50%
+	left: 0
+	transform: translateX(-80px) translateY(-50%)
+	padding: $space-reg
+	background: rgba($color-grey-1, 0.8)
+	width: 76px
+	height: 110px
+	cursor: pointer
+	white-space: pre-wrap
+	img
+		transition: transform 300ms
+		position: absolute
+		bottom: $space-xs
+		left: 50%
+		transform: translateX(-50%)
+		width: 50px
+		height: 50px
+
+.navContainer[data-theme="dark"] .nav_icon
+	background: rgba($color-grey-8, 0.9)
+.navContainer[data-theme="dark"] .nav_icon:before
+	color: $color-white
+
+
+.nav_icon:before
+	+guardianCond-bold
+	position: absolute !important
+	margin-left: $space-xxs
+	display: block
+	text-align: left
+	text-transform: uppercase
+	letter-spacing: 2px
+
+.nav_icon:hover
+	transform: translateX(-90px) translateY(-52%) scale(1.05)
+
+
+
+[data-state="open"]
+	.nav_icon
+		img
+			transform: translateX(-50%) rotate(0deg)
+	.nav_icon:before
+		content: 'More'
+
+
+[data-state="closed"]
+	.nav_icon
+		img
+			transform: translateX(-50%) rotate(180deg)
+	.nav_icon:before
+		content: 'Close'
+

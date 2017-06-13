@@ -1,0 +1,64 @@
+@import ./_reset
+
+@import ./styleguide/styleguide
+@import ./styleguide/fonts/guardian
+@import ./styleguide/fonts/guardianCond
+@import ./styleguide/fonts/playfair
+
+
+
+.title_closed,
+.intro_closed,
+.kicker_closed,
+.releaseDate_closed
+	+resetStyles
+	+guardian-reg
+	color: $color-white 
+
+
+.kicker_closed
+	+resetStyles
+	+guardianCond-bold
+	// +corner-sm
+	// background: $color-black
+	// color: $color-white
+	// padding: 3px 8px
+	padding-bottom: $space-xs
+	margin-bottom: $space-sm
+	border-bottom: solid 1px $color-grey-3
+	display: inline-block
+	text-transform: uppercase
+	font-size: 11px
+	line-height: 0.8
+	letter-spacing: 2px
+
+.kicker_closed
+	color: $color-white
+
+
+
+[data-active="false"]
+	.title_closed,
+	.intro_closed,
+	.kicker_closed,
+	.releaseDate_closed
+		color: $color-grey-4
+
+
+.title_closed
+	+playfair-bold
+	color: $color-white
+	margin-bottom: $space-reg
+	letter-spacing: 1px
+
+.intro_closed
+	line-height: 1.1
+
+.releaseDate_closed
+	+corner-sm
+	color: $color-grey-8 !important
+	padding: $space-sm $space-reg
+	background: $color-grey-4 !important
+	margin-top: $space-reg
+
+
