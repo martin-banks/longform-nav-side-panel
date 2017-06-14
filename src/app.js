@@ -14,11 +14,10 @@ const navSettings = {
 	part: 'photoessay',
 }
 
-const defaultState = 'open'
+const defaultState = 'closed'
 
 
-const APP = document.querySelector(`#${CONFIG.projectName}`)
-// const APP = document.querySelector('.w_header-fixed')
+// const APP = document.querySelector(`#${CONFIG.projectName}`)
 
 const TEMPLATES = {
 	header: {
@@ -122,29 +121,35 @@ function NavContainer(content) {
 }
 
 
-APP.setAttribute('data-mobile', isMobileDevice())
-APP.innerHTML = NavContainer(CONTENT)
+window.onload = function() {
+	const APP = document.querySelector('.w_header-fixed')
+
+	APP.setAttribute('data-mobile', isMobileDevice())
+	APP.innerHTML = NavContainer(CONTENT)
 
 
-const NAV = APP.querySelector('[data-type="navcontainer"]')
-const BUTTON = NAV.querySelector('[data-type="navbutton"]')
-const article = document.querySelector('#content-wrapper')
-if (article) {
-	article.style.transition = 'transform 500ms'
-	article.style.background = '#fff'
-	article.style.transformOrigin = 'left'
-}
-
-function toggleMenu(e) {
-	const state = NAV.getAttribute('data-state')
-	document.body.style.overflow = state !== 'open' ? 'hidden' : 'scroll'
-	NAV.setAttribute('data-state', state === 'open' ? 'closed' : 'open')
+	const NAV = APP.querySelector('[data-type="navcontainer"]')
+	const BUTTON = NAV.querySelector('[data-type="navbutton"]')
+	const article = document.querySelector('#content-wrapper')
 	if (article) {
-		document.body.style.background = state !== 'open' ? '#333' : '#fff'
-		article.style.transform = state !== 'open' ? 'translateX(-600px) scale(0.95)' : ''
-		// article.style.filter = state !== 'open' ? 'blur(5px)' : ''
-		// article.style.opacity = state !== 'open' ? '0.8' : '1'
+		article.style.transition = 'transform 500ms'
+		article.style.background = '#fff'
+		article.style.transformOrigin = 'left'
 	}
+
+	function toggleMenu(e) {
+		const state = NAV.getAttribute('data-state')
+		document.body.style.overflow = state !== 'open' ? 'hidden' : 'scroll'
+		NAV.setAttribute('data-state', state === 'open' ? 'closed' : 'open')
+		if (article) {
+			document.body.style.background = state !== 'open' ? '#333' : '#fff'
+			article.style.transform = state !== 'open' ? 'translateX(-600px) scale(0.95)' : ''
+			// article.style.filter = state !== 'open' ? 'blur(5px)' : ''
+			// article.style.opacity = state !== 'open' ? '0.8' : '1'
+		}
+	}
+	BUTTON.addEventListener('click', toggleMenu)
 }
-BUTTON.addEventListener('click', toggleMenu)
+
+
 
