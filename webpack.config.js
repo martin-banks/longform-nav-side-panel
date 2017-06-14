@@ -46,7 +46,7 @@ if (ENV && ENV !== 'HOT') {
 			console.log(colors.bgRed(err))
 			return
 		}
-		console.error(colors.bgGreen('\n\n Project directory created successfully ').black)
+		console.log(colors.bgGreen('\n\n Project directory created successfully ').black)
 		FS.writeFile(`${buildPath}/report.json`, JSON.stringify(report, 'utf8', '\t'), err => {
 			console.log(colors.bgGreen(' Report generated successfully ').black)
 		})
@@ -56,13 +56,18 @@ if (ENV && ENV !== 'HOT') {
 	})
 }
 
+const output = ENV === 'HOT' ? {
+	filename: jsName,
+		path: buildPath,
+} : {
+	filename: jsName,
+		path: buildPath,
+		publicPath: ENV === 'HOT' ? '' : `${embedPath}/`,
+}
+
 module.exports = {
 	entry: path.join(__dirname, '/src/app.js'),
-	output: {
-		filename: jsName,
-		path: buildPath,
-		// publicPath: buildPath,
-	},
+	output,
 	resolve: {
 		extensions: ['.js', '.css'],
 	},
@@ -95,7 +100,7 @@ module.exports = {
 			},
 			{
 				test: /\.(jpe?g|png|gif|svg)$/i,
-				use: 'file-loader?hash=sha512&digest=hex&name=images/[path][name]__[hash:6].[ext]',
+				use: 'file-loader?hash=sha512&digest=hex&name=[path][name]__[hash:6].[ext]',
 			},
 		],
 	},
