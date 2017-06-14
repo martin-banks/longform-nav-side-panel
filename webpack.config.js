@@ -36,10 +36,10 @@ if (ENV && ENV !== 'HOT') {
 	const embedCode = `<div>${localstyle}
 	<link rel="stylesheet" href="${embedPath}/${cssName}" />
 	<script>
-		var chapter = 3
+		// custom JS here
 	</script>
 	<div id="${CFG.projectName}"></div>
-	<script type="text/javascripts" src="${embedPath}/${jsName}" ></script>
+	<script type="text/javascript" src="${embedPath}/${jsName}" ></script>
 </div>`
 	MKDIRP(buildDir, err => {
 		if (err) {
