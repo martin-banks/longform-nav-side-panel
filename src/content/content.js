@@ -213,7 +213,7 @@ const CONTENT = {
 
 		{
 			active: false,
-			type: 'fashion',
+			type: 'philanthropist',
 			kicker: 'Part 5',
 			title: 'Philanthropist',
 			intro: 'Closed chapter intro',
@@ -263,7 +263,7 @@ const CONTENT = {
 
 		{
 			active: false,
-			type: 'fashion',
+			type: 'thefirm',
 			kicker: 'Part 6',
 			title: 'The firm',
 			intro: 'Closed chapter intro',
@@ -313,7 +313,7 @@ const CONTENT = {
 
 		{
 			active: false,
-			type: 'fashion',
+			type: 'romance',
 			kicker: 'Part 7',
 			title: 'Romance',
 			intro: 'Closed chapter intro',

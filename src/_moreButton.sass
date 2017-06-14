@@ -1,0 +1,31 @@
+@import ./_reset
+
+@import ./styleguide/styleguide
+@import ./styleguide/fonts/guardian
+@import ./styleguide/fonts/guardianCond
+@import ./styleguide/fonts/playfair
+
+
+// RESETS //////////////////////
+.moreButton
+	+resetStyles
+
+.moreButton
+	+guardian-reg
+	border: none
+	background: none
+	border-radius: none
+	width: 100%
+	font-size: 14px
+	text-align: right
+	color: $color-white
+	padding-top: $space-xxs
+	margin-top: $space-reg
+	border-top: solid 1px rgba($color-white, 0.3)
+	vertical-align: bottom
+
+
+.moreIcon
+	width: 20px
+	transform: translateY(20%)
+
