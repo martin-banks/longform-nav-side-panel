@@ -234,9 +234,9 @@ window.onload = function() {
 		NAV.setAttribute('data-state', state === 'open' ? 'closed' : 'open')
 		if (article) {
 			document.body.style.background = state !== 'open' ? '#222' : '#fff'
-			article.style.transform = state !== 'open' ? 'translateX(-400px) scale(0.95)' : ''
-			article.style.filter = state !== 'open' ? 'blur(5px)' : ''
-			article.style.opacity = state !== 'open' ? '0.8' : '1'
+			// article.style.transform = state !== 'open' ? 'translateX(-400px) scale(0.95)' : ''
+			// article.style.filter = state !== 'open' ? 'blur(5px)' : ''
+			// article.style.opacity = state !== 'open' ? '0.8' : '1'
 		}
 	}
 
