@@ -6,7 +6,7 @@
   "main": "app.js",
   "scripts": {
     "start": "NODE_ENV=HOT webpack-dev-server --config webpack.config.js --colors",
-    "uat": "clear && NODE_ENV=UAT webpack --config webpack.config.js --progress --colors",
+    "uat": "clear && NODE_ENV=UAT webpack --config webpack.config.js --progress --colors --watch",
     "prod": "clear && NODE_ENV=PROD webpack -p --config webpack.config.js --progress --colors",
     "server": "http-server -p 3000 -o",
     "images": "node ./processImages.js",
