@@ -17,8 +17,7 @@ const navSettings = {
 	part: 'photoessay',
 }
 
-const defaultState = 'open'
-
+let isOpen = false
 
 const TEMPLATES = {
 	header: {
@@ -92,7 +91,7 @@ function chapterFactory(chapter) {
 			TEMPLATES.chapter.title(chapter.title),
 			TEMPLATES.chapter.intro(chapter.intro),
 		].join('')}
-		${STATE.open ? PARTS() : ''}
+		${STATE.open ? PARTS().join('') : ''}
 		${!STATE.active ? TEMPLATES.closed.releaseDate(chapter.releaseDate) : ''}
 		${STATE.active && !STATE.open ? TEMPLATES.closed.openButton(chapter.type) : ''}
 	</div>`
@@ -124,123 +123,60 @@ console.log({ CHAPTER_FACTORIES })
 
 
 
-
-
-
-
-
-// function partTemplate(part) {
-// 	const { id: link, intro, title, kicker, image } = part.value
-// 	const { value, type } = part
-// 	return type === navSettings.part ? '' : `<a 
-// 		href="${link}"
-// 		target="_self"
-// 		class="${Styles.part_linkWrapper}" 
-// 		data-type="${part.type}"
-// 	>
-// 		${TEMPLATES.part.image(image)}
-// 		<div class="${Styles.chapter_text_wrapper}">
-// 			${TEMPLATES.part.kicker(kicker)}
-// 			${TEMPLATES.part.title(title)}
-// 			${TEMPLATES.part.intro(intro)}
-// 			<div class="${Styles.part_linkIcon}">
-// 				<img class="${Styles.icon_link}" src="${Icons.angle_right_dark}" alt="" />
-// 			</div>
-// 		</div>
-// 	</a>`
-// }
-
-// function closedChapter(chapter) {
-// 	const { title, intro, kicker, releaseDate, active } = chapter
-// 	// const KEYS = Object.keys(closed)
-// 	return `<div class="${Styles.closedChapter}">
-// 		${TEMPLATES.closed.kicker(kicker)}
-// 		${TEMPLATES.closed.title(title)}
-// 		${TEMPLATES.closed.intro(intro)}
-// 		${!active ? TEMPLATES.closed.releaseDate(releaseDate) : TEMPLATES.closed.openButton(chapter.type)}
-// 	</div>`
-
-// 	// return template(KEYS.map(key => TEMPLATES.closed[key](closed[key])).join(''))
-// }
-
-// function activeChapter(chapter) {
-// 	const { title, intro, kicker } = chapter
-// 	return [
-// 		TEMPLATES.chapter.kicker(kicker),
-// 		TEMPLATES.chapter.title(title),
-// 		TEMPLATES.chapter.intro(intro),
-// 		chapter.parts.map(part => partTemplate(part)).join(''),
-// 	].join('')
-// }
-
-
-// function chapterTemplate(chapter) {
-// 	const current = chapter.type === navSettings.chapter
-// 	return `<div 
-// 		class="${Styles.chapter_container}" 
-// 		data-chapter="${chapter.type}"
-// 		data-type="chapter"
-// 		data-current="${current}"
-// 		data-active="${chapter.active}"
-// 	>
-// 		${current ? activeChapter(chapter) : closedChapter(chapter)}
-// 	</div>`
-// }
-
-
 function NavContainer(content) {
 	// const { chapters, header } = content
 	return `<section 
 			class="${Styles.navContainer}"
 			data-type="navcontainer"
-			data-state="${defaultState}"
+			data-state="${isOpen ? 'open' : 'closed'}"
 			data-theme="${CONFIG.theme}"
 		>
 			<div class="${Styles.nav_icon}" data-type="navbutton">
 				<img src="${CONFIG.theme === 'light' ? Icons.angle_right_dark : Icons.angle_right_light}" alt="" />
 			</div>
-			<div class="${Styles.nav_content}">${content}</div>
+			<div class="${Styles.nav_content}" data-type="navcontent">${content}</div>
 	</section>`
 }
 
 function renderNav(into) {
-	const content = Object.keys(CHAPTER_FACTORIES).map(key => CHAPTER_FACTORIES[key].RENDER()).join('')
+	const content = Object.keys(CHAPTER_FACTORIES)
+		.map(key => CHAPTER_FACTORIES[key].RENDER())
+		.join('')
 	into.innerHTML = NavContainer(content)
 }
 
 window.onload = function() {
-	// const APP = document.querySelector('.w_header-fixed')
-	const APP = document.querySelector(`#${CONFIG.projectName}`)
+	const longformApp = document.querySelector('.w_header-fixed')
+	const localApp = document.querySelector(`#${CONFIG.projectName}`)
+	const APP = longformApp || localApp
 
 	APP.setAttribute('data-mobile', isMobileDevice())
-	// APP.innerHTML = NavContainer(CONTENT)
 	renderNav(APP)
-
-	delegate(`#${CONFIG.projectName}`, 'click', '[data-type="toggleButton"]', toggleChapters)
-	delegate(`#${CONFIG.projectName}`, 'click', '[data-type="navbutton"]', toggleMenu)
-
-	// const BUTTON = NAV.querySelector('[data-type="navbutton"]')
 	const article = document.querySelector('#content-wrapper')
+	// const BUTTON = NAV.querySelector('[data-type="navbutton"]')
+
 	if (article) {
-		article.style.transition = 'transform 500ms'
+		article.style.transition = 'transform 500ms, filter 400ms, opacity 600ms'
 		article.style.background = '#fff'
 		article.style.transformOrigin = 'left'
 	}
 
 	function toggleMenu(e) {
+		isOpen = !isOpen
 		const NAV = APP.querySelector('[data-type="navcontainer"]')
 		const state = NAV.getAttribute('data-state')
 		document.body.style.overflow = state !== 'open' ? 'hidden' : 'scroll'
 		NAV.setAttribute('data-state', state === 'open' ? 'closed' : 'open')
-		if (article) {
-			document.body.style.background = state !== 'open' ? '#222' : '#fff'
-			// article.style.transform = state !== 'open' ? 'translateX(-400px) scale(0.95)' : ''
-			// article.style.filter = state !== 'open' ? 'blur(5px)' : ''
-			// article.style.opacity = state !== 'open' ? '0.8' : '1'
+		if (longformApp) {
+			document.body.style.backgroundColor = state !== 'open' ? '#111' : '#fff'
+			// article.style.transform = state !== 'open' ? 'scale(0.95)' : ''
+			article.style.filter = state !== 'open' ? 'blur(5px)' : ''
+			article.style.opacity = state !== 'open' ? '0.8' : '1'
 		}
 	}
 
 	function toggleChapters(e) {
+		console.log('clicked a toggle!!', e)
 		const C = closest(e.target, '[data-type="chapter"]')
 		Object.keys(CHAPTER_FACTORIES).forEach(key => CHAPTER_FACTORIES[key].SET_OPEN(key === C.dataset.chapter))
 		// CHAPTER_FACTORIES[this.dataset.chapter].SET_OPEN(true)
@@ -248,9 +184,12 @@ window.onload = function() {
 		renderNav(APP)
 	}
 
-	document.querySelectorAll('[data-type="toggleButton"]').forEach(button => {
-		button.addEventListener('click', toggleChapters)
-	})
+	delegate('body', 'click', '[data-type="toggleButton"]', toggleChapters)
+	// delegate('body', 'click', '[data-type="navbutton"]', toggleMenu)
+	delegate('body', 'click', '[data-type="navbutton"]', toggleMenu)
+	// document.querySelectorAll('[data-type="toggleButton"]').forEach(button => {
+	// 	button.addEventListener('click', toggleChapters)
+	// })
 	// BUTTON.addEventListener('click', toggleMenu)
 }
 
